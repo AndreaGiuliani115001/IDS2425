@@ -19,8 +19,8 @@ public class Trasformatore extends Utente {
     @DBRef
     private List<Contenuto> contenutiCaricati;
 
-    public Trasformatore(String nome, String cognome, String email, String password) {
-        super(nome, cognome, email, password, Ruolo.TRASFORMATORE);
+    public Trasformatore(String nome, String cognome, String email, String password, Azienda azienda) {
+        super(nome, cognome, email, password, Ruolo.TRASFORMATORE, azienda);
         this.prodottiTrasformati = new ArrayList<Prodotto>();
         this.contenutiCaricati = new ArrayList<Contenuto>();
     }
@@ -32,7 +32,7 @@ public class Trasformatore extends Utente {
 
     @Override
     public void condividiInformazioni(Prodotto prodotto, Contenuto contenuto) {
-
+        System.out.println("Il trasformatore sta condividendo informazioni");
     }
 
     public void trasformaProdotto(Prodotto prodotto) {
@@ -40,6 +40,6 @@ public class Trasformatore extends Utente {
     }
 
     public void caricaContenuto(Contenuto contenuto) {
-        System.out.println("Contenuto '" + contenuto.getDescrizione() + "' caricato con successo dal Produttore.");
+        System.out.println("Contenuto '" + contenuto.getDescrizione() + "' caricato con successo dal trasformatore.");
     }
 }

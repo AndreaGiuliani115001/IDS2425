@@ -26,9 +26,10 @@ public class JwtTokenProvider {
     /**
      * Genera un token JWT per l'utente.
      */
-    public String generateToken(String username) {
+    public String generateToken(String username, String ruolo) {
         return Jwts.builder()
                 .setSubject(username)
+                .claim("ruolo", "ROLE_" + ruolo)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
                 .signWith(secretKey, SignatureAlgorithm.HS256)  // Nuova API: usa SecretKey
@@ -41,6 +42,18 @@ public class JwtTokenProvider {
     public String getUsernameFromToken(String token) {
         return extractClaim(token, Claims::getSubject);
     }
+
+    /**
+     * Estrae il ruolo dell'utente dal token.
+     */
+    public String getRuoloFromToken(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(secretKey)
+                .parseClaimsJws(token)
+                .getBody();
+        return (String) claims.get("ruolo");
+    }
+
 
     /**
      * Verifica se il token è valido.

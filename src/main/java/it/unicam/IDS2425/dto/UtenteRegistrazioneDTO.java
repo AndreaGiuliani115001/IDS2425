@@ -7,10 +7,12 @@ import lombok.Setter;
 @Getter
 public class UtenteRegistrazioneDTO {
     // Getters e Setters
+
     private String nome;
     private String cognome;
     private String email;
     private String password;
-    private String ruolo;  // Es. "PRODUTTORE" o "CURATORE"
+    private String ruolo;
+    private String aziendaId;
 
 }

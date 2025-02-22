@@ -19,8 +19,8 @@ public class Produttore extends Utente {
     @DBRef
     private List<Contenuto> contenutiCaricati;
 
-    public Produttore(String nome, String cognome, String email, String password) {
-        super(nome, cognome, email, password, Ruolo.PRODUTTORE);
+    public Produttore(String nome, String cognome, String email, String password, Azienda azienda) {
+        super(nome, cognome, email, password, Ruolo.PRODUTTORE, azienda);
         this.prodottiCaricati = new ArrayList<Prodotto>();
         this.contenutiCaricati = new ArrayList<Contenuto>();
     }

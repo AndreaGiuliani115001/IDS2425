@@ -1,21 +1,23 @@
 package it.unicam.IDS2425.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Document(collection = "aziende")
 public class Azienda {
 
     @Id
-    private String id;  // Identificatore del documento
+    private String id;
 
     private String ragioneSociale;
     private String pIva;
@@ -23,14 +25,11 @@ public class Azienda {
     private String email;
     private String numeroTelefono;
 
-    @DBRef
-    private List<Utente> dipendenti;
+    @CreatedDate
+    private LocalDateTime createdAt;
 
-    @DBRef
-    private List<PacchettoProdotti> pacchettiProdotti;
-
-    @DBRef
-    private List<Prodotto> prodotti;  // Relazione con i prodotti
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
 
     public Azienda(String ragioneSociale, String pIva, String indirizzo, String email, String numeroTelefono) {
         this.ragioneSociale = ragioneSociale;
@@ -38,7 +37,5 @@ public class Azienda {
         this.indirizzo = indirizzo;
         this.email = email;
         this.numeroTelefono = numeroTelefono;
-        this.dipendenti = new ArrayList<>();
-        this.prodotti = new ArrayList<>();
     }
 }

@@ -19,8 +19,8 @@ public class Acquirente extends Utente{
     @DBRef
     private List<Ordine> ordini;
 
-    public Acquirente(String nome, String cognome, String email, String password, Carrello carrello) {
-        super(nome, cognome, email, password, Ruolo.ACQUIRENTE);
+    public Acquirente(String nome, String cognome, String email, String password, Carrello carrello, Azienda azienda) {
+        super(nome, cognome, email, password, Ruolo.ACQUIRENTE, azienda);
         this.carrello = carrello;
         this.ordini = new ArrayList<>();
     }

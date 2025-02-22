@@ -16,8 +16,8 @@ public class Curatore extends Utente {
     @DBRef
     private List<Contenuto> ContenutiValidati;
 
-    public Curatore(String nome, String cognome, String email, String password) {
-        super(nome, cognome, email, password, Ruolo.CURATORE);
+    public Curatore(String nome, String cognome, String email, String password, Azienda azienda) {
+        super(nome, cognome, email, password, Ruolo.CURATORE, azienda);
         this.ContenutiValidati = new ArrayList<Contenuto>();
     }
 

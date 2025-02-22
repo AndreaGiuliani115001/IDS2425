@@ -1,5 +1,6 @@
 package it.unicam.IDS2425.service;
 
+import it.unicam.IDS2425.model.Azienda;
 import it.unicam.IDS2425.service.factory.UtenteFactory;
 import it.unicam.IDS2425.model.Ruolo;
 import it.unicam.IDS2425.model.Utente;
@@ -22,9 +23,9 @@ public class UtenteService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Utente registraUtente(String nome, String cognome, String email, String password, Ruolo ruolo) {
+    public Utente registraUtente(String nome, String cognome, String email, String password, Ruolo ruolo, Azienda azienda) {
         String hashedPassword = passwordEncoder.encode(password);
-        Utente nuovoUtente = utenteFactory.creaUtente(nome, cognome, email, hashedPassword, ruolo);
+        Utente nuovoUtente = utenteFactory.creaUtente(nome, cognome, email, hashedPassword, ruolo,azienda);
         return utenteRepository.save(nuovoUtente);
     }
 
@@ -37,6 +38,10 @@ public class UtenteService {
             }
         }
         return null;  // Credenziali non valide
+    }
+
+    public Optional<Utente> trovaUtenteByEmail(String email) {
+        return utenteRepository.findByEmail(email);
     }
 
     public Utente save(Utente utente) {

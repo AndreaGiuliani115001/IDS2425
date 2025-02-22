@@ -17,8 +17,8 @@ public class Animatore extends Utente {
     @DBRef
     private List<Evento> eventiOrganizzati;
 
-    public Animatore(String nome, String cognome, String email, String password) {
-        super(nome, cognome, email, password, Ruolo.ANIMATORE);
+    public Animatore(String nome, String cognome, String email, String password, Azienda azienda) {
+        super(nome, cognome, email, password, Ruolo.ANIMATORE, azienda);
         this.eventiOrganizzati = new ArrayList<Evento>();
     }
 
