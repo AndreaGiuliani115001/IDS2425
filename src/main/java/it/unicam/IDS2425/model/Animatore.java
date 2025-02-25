@@ -6,54 +6,42 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-@Getter
+/**
+ * Classe che rappresenta un animatore nel sistema.
+ * L'animatore è un utente che può organizzare eventi.
+ */
 @Setter
+@Getter
 @Document(collection = "utenti")
 public class Animatore extends Utente {
 
+    /**
+     * Lista degli eventi organizzati dall'animatore.
+     */
     @DBRef
     private List<Evento> eventiOrganizzati;
 
+    /**
+     * Costruttore per creare un animatore.
+     *
+     * @param nome Il nome dell'animatore.
+     * @param cognome Il cognome dell'animatore.
+     * @param email L'email dell'animatore.
+     * @param password La password dell'animatore.
+     * @param azienda L'azienda a cui l'animatore è associato.
+     */
     public Animatore(String nome, String cognome, String email, String password, Azienda azienda) {
         super(nome, cognome, email, password, Ruolo.ANIMATORE, azienda);
-        this.eventiOrganizzati = new ArrayList<Evento>();
-    }
-
-    public List<Evento> getEventiOrganizzati() {
-        return eventiOrganizzati;
-    }
-
-    public void setEventiOrganizzati(List<Evento> eventiOrganizzati) {
-        this.eventiOrganizzati = eventiOrganizzati;
-    }
-
-    @Override
-    public void eseguiAzioneSpecificata() {
-        System.out.println("L'Animatore della Filiera può organizzare eventi e fiere.");
-    }
-
-    @Override
-    public void condividiInformazioni(Prodotto prodotto, Contenuto contenuto) {
-        System.out.println("L'Animatore sta condividendo informazioni.");
+        this.eventiOrganizzati = new ArrayList<>();
     }
 
     /**
-     * Metodo per organizzare un evento.
-     * @param nome dell'evento.
-     * @param descrizione dell'evento.
-     * @param luogo dell'evento.
-     * @param dataInizio dell'evento.
-     * @param datafine dell'evento.
-     * @param partecipanti dell'evento.
+     * Restituisce una rappresentazione testuale dell'animatore.
+     *
+     * @return Stringa contenente le informazioni dell'animatore.
      */
-    public void organizzaEvento(String nome, String descrizione, String luogo, Date dataInizio, Date datafine, List<Utente> partecipanti) {
-        System.out.println("Evento '" + nome + "' organizzato dall'Animatore.");
-
-    }
-
     @Override
     public String toString() {
         return "Animatore{" +

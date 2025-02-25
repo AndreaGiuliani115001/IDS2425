@@ -12,9 +12,22 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Gestore personalizzato per gli accessi negati.
+ * Intercetta le richieste non autorizzate e restituisce una risposta JSON dettagliata.
+ */
 @Component
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
+    /**
+     * Gestisce l'eccezione di accesso negato restituendo una risposta JSON con dettagli sull'errore.
+     *
+     * @param request La richiesta HTTP in corso.
+     * @param response La risposta HTTP da restituire.
+     * @param accessDeniedException L'eccezione di accesso negato intercettata.
+     * @throws IOException In caso di errore nella scrittura della risposta.
+     * @throws ServletException In caso di errore generico nella gestione della richiesta.
+     */
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException)
             throws IOException, ServletException {
